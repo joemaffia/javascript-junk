@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Socialwall</title>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("jquery", "1.4.2");</script>
+<script type="text/javascript" src="socialwall.js"></script>
+<style type="text/css">
+/* socialwall */
+
+div#socialwall-wrap {
+
+    left:0;
+
+    /*overflow:hidden;*/
+
+    padding:30px 38px 0px 38px;
+
+    position:relative;
+
+    top:0;
+
+    width:384px;
+
+    height:288px;
+
+    /*z-index:2;*/
+
+}
+
+div#socialwall-wrap 
+
+{
+
+    width:816px;
+
+    height:144px;
+
+    padding:24px 72px 0px 72px;
+
+}
+
+div#socialwall {
+
+height:288px;
+
+/*overflow:hidden;*/
+
+position:relative;
+
+width:100%;
+
+/*z-index:3;*/
+
+}
+
+div#socialwall-wrap 
+
+{
+
+    height:144px;
+
+}
+
+div#socialwall a {
+
+float:left;
+
+}
+
+div#socialwall img {
+
+height:48px;
+
+width:48px;
+
+}
+
+.highlight {
+
+color:#22B8F0;
+
+}
+
+.avatar {
+
+float:left;
+
+height:48px;
+
+position:relative;
+
+width:48px;
+
+}
+
+.active {
+
+    z-index:4;
+
+}
+
+.tooltip {
+
+    bottom:35px;
+
+    position:absolute;
+
+    right:-80px;
+
+    width:209px;
+
+}
+
+div.video2 div.examples .ttip {
+
+    bottom:14px;
+
+    position:absolute;
+
+    right:-93px;
+
+    width:209px;
+
+    display:none;
+
+}
+
+.tooltipTop, div.video2 div.examples .ttipTop 
+
+{
+
+    background:transparent url(http://media.ef.com/_imgs/globalintern/talk.png) no-repeat center top;
+
+    width:179px;
+
+    padding:15px 15px 5px 15px;
+
+    color:#0d3d69;
+
+    font-size:11px;
+
+}
+
+.tooltipEnd, div.video2 div.examples .ttipEnd 
+
+{
+
+    background:transparent url(http://media.ef.com/_imgs/globalintern/talk.png) no-repeat center bottom;
+
+    height:25px;
+
+    width:209px;
+
+}
+
+* html .tooltipTop, * html div.video2 div.examples .ttipTop 
+
+{
+
+    background:transparent url(http://media.ef.com/_imgs/globalintern/talk.gif) no-repeat center top;
+
+}
+
+* html .tooltipEnd, * html div.video2 div.examples .ttipEnd  {
+
+    background:transparent url(http://media.ef.com/_imgs/globalintern/talk.gif) no-repeat center bottom;
+
+}
+
+.tooltip span 
+
+{
+
+    font-size:10px;
+
+    color:#444;
+
+}
+
+
+
+/* end of socialwall*/
+
+</style>
+</head>
+
+<body>
+<div id="socialwall-wrap">
+    <div id="socialwall"></div>
+</div>
+<script type="text/javascript">
+//caching socialwall var
+var fresh_feeds = []; 
+var $socialwall = $("#socialwall"); 
+var max_feeds  = 51;
+var counter = 0;
+
+$(document).ready(function(){
+    //start the socialwall
+    socialwall();
+});
+</script>
+</body>
+</html>
