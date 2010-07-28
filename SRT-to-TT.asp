@@ -4,7 +4,7 @@
 // script to convert multi-line srt caption files to tt XML caption files
 // it will search for any .srt files inside this folder and create the equivalent .xml files
 var fileio =  new ActiveXObject("Scripting.FileSystemObject"); 
-var systemPath = "/master/ly/labs/SRTxTT/";
+var systemPath = "/xxx/SRTxTT/";
 var assetPath = Server.MapPath(systemPath);
 
 var f = fileio.GetFolder(assetPath);
