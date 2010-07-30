@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>flipping clock/countdown</title>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("jquery", "1.4.2");</script>
+<script type="text/javascript" src="jquery.countdown.js"></script>
+<script type="text/javascript" src="flippingclock.js"></script>
+</head>
+
+<body>
+<style type="text/css">
+
+/* COUNTDOWN */
+#days, #hrs, #minutes, #seconds 
+
+{
+
+    float:left;
+
+    font-size:10px;
+
+    text-align:left;
+
+    color:#616161;
+
+}
+#banner div.countdown div#secondsDgt1-a, #banner div.countdown div#secondsDgt2-a, 
+
+#banner div.countdown div#minutesDgt1-a, #banner div.countdown div#minutesDgt2-a, 
+
+#banner div.countdown div#hrsDgt1-a, #banner div.countdown div#hrsDgt2-a,
+
+#banner div.countdown div#daysDgt1-a, #banner div.countdown div#daysDgt2-a, #banner div.countdown div#daysDgt3-a {
+
+    width:23px;
+
+    height:45px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    float:left;
+
+}
+
+#banner div.countdown div#secondsDgt1-b, #banner div.countdown div#secondsDgt2-b, 
+
+#banner div.countdown div#minutesDgt1-b, #banner div.countdown div#minutesDgt2-b, 
+
+#banner div.countdown div#hrsDgt1-b, #banner div.countdown div#hrsDgt2-b,
+
+#banner div.countdown div#daysDgt1-b, #banner div.countdown div#daysDgt2-b, #banner div.countdown div#daysDgt3-b {
+
+    position:absolute;
+
+}
+
+#banner div.countdown div#secondsDgt1-c, #banner div.countdown div#secondsDgt2-c, 
+
+#banner div.countdown div#minutesDgt1-c, #banner div.countdown div#minutesDgt2-c, 
+
+#banner div.countdown div#hrsDgt1-c, #banner div.countdown div#hrsDgt2-c,
+
+#banner div.countdown div#daysDgt1-c, #banner div.countdown div#daysDgt2-c,#banner div.countdown div#daysDgt3-c {
+
+    background:transparent url(digits.png) no-repeat 0px 0px;
+
+    width:23px;
+
+    height:2745px;
+
+    top:-2700px;
+
+}
+
+#banner div.countdown div.colon {
+
+    float:left;
+
+    overflow:hidden;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    margin-top:2px;
+
+    color:#616161;
+
+}
+
+/* end of COUNTDOWN */
+
+</style>
+<div id="banner">
+<div class="countdown">
+    <div id="countdownTrace"></div>
+    <!--DAYS-->
+    <div id="days">
+        Days
+        <div class="clear"></div>
+        <div id="daysDgt1-a">
+            <div id="daysDgt1-b">
+                <div id="daysDgt1-c"></div>
+            </div>
+        </div>
+        <div id="daysDgt2-a">
+            <div id="daysDgt2-b">
+                <div id="daysDgt2-c"></div>
+            </div>
+        </div>
+        <div id="daysDgt3-a">
+            <div id="daysDgt3-b">
+                <div id="daysDgt3-c"></div>
+            </div>
+        </div>
+        <div class="colon">:</div>
+    </div>
+    
+    <!--HOURS-->
+    <div id="hrs">
+        Hours
+        <div class="clear"></div>
+        <div id="hrsDgt1-a">
+            <div id="hrsDgt1-b">
+                <div id="hrsDgt1-c"></div>
+            </div>
+        </div>
+        <div id="hrsDgt2-a">
+            <div id="hrsDgt2-b">
+                <div id="hrsDgt2-c"></div>
+            </div>
+        </div>
+        <div class="colon">:</div>
+    </div>
+    
+    <!--MINUTES-->
+    <div id="minutes">
+        Minutes
+        <div class="clear"></div>
+        <div id="minutesDgt1-a">
+            <div id="minutesDgt1-b">
+                <div id="minutesDgt1-c"></div>
+            </div>
+        </div>
+        <div id="minutesDgt2-a">
+            <div id="minutesDgt2-b">
+                <div id="minutesDgt2-c"></div>
+            </div>
+        </div>
+        <div class="colon">:</div>
+    </div>
+    <!--SECONDS-->
+    <div id="seconds">
+        Seconds
+        <div class="clear"></div>
+        <div id="secondsDgt1-a">
+            <div id="secondsDgt1-b">
+                <div id="secondsDgt1-c"></div>
+            </div>
+        </div>
+        <div id="secondsDgt2-a">
+            <div id="secondsDgt2-b">
+                <div id="secondsDgt2-c"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+//caching countdown var
+var secondsDgt1 = $('div#banner div.countdown div#secondsDgt1-b');
+var secondsDgt2 = $('div#banner div.countdown div#secondsDgt2-b');
+var minutesDgt1 = $('div#banner div.countdown div#minutesDgt1-b');
+var minutesDgt2 = $('div#banner div.countdown div#minutesDgt2-b');
+var hrsDgt1     = $('div#banner div.countdown div#hrsDgt1-b');
+var hrsDgt2     = $('div#banner div.countdown div#hrsDgt2-b');
+var daysDgt1     = $('div#banner div.countdown div#daysDgt1-b');
+var daysDgt2     = $('div#banner div.countdown div#daysDgt2-b');
+var daysDgt3     = $('div#banner div.countdown div#daysDgt3-b');
+var previousSecA;
+var previousSecB;
+var previousMinA;
+var previousMinB;
+var previousHrsA;
+var previousHrsB;
+var previousDaysA;
+var previousDaysB;
+var previousDaysC;
+
+var stepAnimation = 100;
+var timeoutAnimation = 600;
+$(document).ready(function(){
+    
+    $("div#countdownTrace").countdown({
+        date:"04/23/2012 00:00:00 AM", // mm/dd/yyyy hh:mm:ss AM/PM
+        addZeros: true,
+        interval: 1000,
+        onTick:function(control, day, hrs, min, sec) {
+            
+            //seconds
+            animateSec(sec);
+            
+            //minutes
+            animateMin(min);
+            
+            //minutes
+            animateHrs(hrs);
+            
+            //You can return true to use the existing display logic
+            //return true;
+        },
+        onStart:function(now) {
+            if (now >= 0) {
+                var seconds = now.valueOf()/1000;        
+                var day = (Math.floor(seconds/86400))%86400;
+                var hrs = (Math.floor(seconds/3600))%24;
+                var min = (Math.floor(seconds/60))%60;
+                var sec = (Math.floor(seconds/1))%60;
+                
+                day = day+"";
+                if (day.length < 3 && day.length >= 2) {
+                    day = "0"+day;
+                } else if (day.length < 2) {
+                    day = "00"+day;
+                } else {
+                    ;
+                }
+                
+                hrs = (hrs+"").length<2?"0"+hrs:hrs+"";
+                min = (min+"").length<2?"0"+min:min+"";
+                sec = (sec+"").length<2?"0"+sec:sec+"";
+                
+                sec1 = sec.substr(0,1);
+                sec2 = sec.substr(1);
+                min1 = min.substr(0,1);
+                min2 = min.substr(1);
+                hrs1 = hrs.substr(0,1);
+                hrs2 = hrs.substr(1);
+                day1 = day.substr(0,1); 
+                day2 = day.substr(1,1); 
+                day3 = day.substr(2); 
+                
+                
+                //set the general value otherwise NaN
+                previousSecA = -parseInt(sec1)*270;
+                previousSecB = -parseInt(sec2)*270;
+                previousMinA = -parseInt(min1)*270;
+                previousMinB = -parseInt(min2)*270;
+                previousHrsA = -parseInt(hrs1)*270;
+                previousHrsB = -parseInt(hrs2)*270;
+                previousDaysA= -parseInt(day1)*270;
+                previousDaysB= -parseInt(day2)*270;
+                previousDaysC= -parseInt(day3)*270;
+                
+                //set the start value on the display
+                secondsDgt1.css("top",-(sec1*270));
+                secondsDgt2.css("top",-(sec2*270));
+                minutesDgt1.css("top",-(min1*270));
+                minutesDgt2.css("top",-(min2*270));
+                hrsDgt1.css("top",-(hrs1*270));
+                hrsDgt2.css("top",-(hrs2*270));
+                daysDgt1.css("top",-(day1*270));
+                daysDgt2.css("top",-(day2*270));
+                daysDgt3.css("top",-(day3*270));
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>
