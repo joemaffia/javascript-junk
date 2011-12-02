@@ -1,4 +1,3 @@
-﻿
 var type = "google"; //could be msn, yahoo or iCal
 
 //Clean start and end time from all characters, spaces, punctuation and return alway a string like HHMMSS
